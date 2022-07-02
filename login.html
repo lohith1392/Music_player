@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Page</title>
+	<link rel="stylesheet" type="text/css" href="register.css">
+</head>
+<body onload="document.form1.text1.focus()">
+	<div class="hero">
+		<div class="form-box">
+			<div class="button-box">
+	<div id="btn"></div>
+		<div><button type="button" class="toggle-btn" style="overflow: auto; float: left;"  onclick="login()">Log in</button></div>
+		<div><button type="button" class="toggle-btn" onclick="register()">Register</button></div>		
+			</div>
+			<div class="social-icon">
+			<img src="facebook.png" width="38" height="38">
+			<img src="google.png"  width="38" height="38">
+			<img src="twitter.png"  width="38" height="38">
+			
+		</div>
+		<form id="login" class="input-group" onsubmit="validatelogin()">
+			<input type="text" class="input-field" id="username" onmouseover="color_change()" placeholder="User Name" required>
+			<input type="Password" class="input-field" id="password"  placeholder="Enter Password" required>
+			<input type="checkbox" class="check-box"><span>Remember Password</span>
+			<button type="submit" id="myButton" class="submit-btn">Log in</button>
+			
+		</form>
+		<form id="register" class="input-group" onsubmit="validatereg()">
+			<input type="text" class="input-field" id="username1" onblur="color()" placeholder="User Name" required>
+			<input type="text" class="input-field" id = "email_chk" onfocus="bgcolor()"placeholder="Email Id" required>
+			<input type="Password" class="input-field" id="password1" placeholder="Enter Password" required>
+			<div id="number" class="input-field" style="color: rgba(108, 108, 108, 0.8);">
+		    Tel No_1:
+		    <input type="text" name="Tel No_1" >
+		    <input type="button" id="add_no()_1" onclick="addno()" value="+" />
+		  </div>
+
+			
+			<input type="checkbox" class="check-box"><span>Send me updates</span>
+			<button type="submit" class="submit-btn"><a href="index.html">Register</a></button>
+			
+		</form>
+		</div>
+		
+	</div>
+	<script  type='text/javascript'>
+		var x = document.getElementById("login");
+		var y = document.getElementById("register");
+		var z = document.getElementById("btn");
+
+		function color_change(){
+			document.getElementById("username").style.color = "red";
+		}
+
+		function color(){ 
+			document.getElementById("username1").style.color = "red"
+		}
+
+		function bgcolor(){
+			document.getElementById("email_chk").style.background = "#ffd4d5"
+		}
+
+		function register() {
+			x.style.left = "-400px";
+			y.style.left = "50px";
+			z.style.left = "110px";
+		}
+		function login() {
+			x.style.left = "50px";
+			y.style.left = "450px";
+			z.style.left = "0px";
+		}
+		function validatelogin(){
+		  var username = document.getElementById('username').value;
+		  var password = document.getElementById('password').value;
+		  var userRGEX = /^(?=[a-zA-Z0-9._]{5,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
+		  var passRGEX = /^[a-zA-Z0-9]{3,30}$/;
+		  var userResult = userRGEX.test(username);
+		  var passResult = passRGEX.test(password);
+		  alert("username:"+userResult + ", password: "+passResult);
+		  window.open("index.html")
+		}
+		function validatereg(){
+			var username1 = document.getElementById('username1').value;
+		  	var password1 = document.getElementById('password1').value;
+		  	var email1 = document.getElementById('email_chk').value;
+		  	var userRGEX1 = /^(?=[a-zA-Z0-9._]{5,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
+		  	var passRGEX1 = /^[a-zA-Z0-9]{3,30}$/;
+		  	var emailREGX1 = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		  	var userResult1 = userRGEX1.test(username1);
+		  	var passResult1 = passRGEX1.test(password1);
+		  	var emailResult1 = emailREGX1.test(email1);
+		  	alert("username:"+userResult1 + ", password: "+passResult1 + ", email:" + emailResult1);
+		  	window.open("index.html")
+		}
+		var i = 1;
+
+function addno() {
+  i++;
+  var div = document.createElement('div');
+  var id = i;
+  div.innerHTML = 'Tel No_' + id + ': <input type="text" name="Tel No_' + id + '"/>' + ' <input type="button" id="add_no()' + id + '" onclick="addno()" value="+" />' + ' <input type="button" id="rem_no()' + id + '" onclick="remno(this)" value="-" />';
+  document.getElementById('number').appendChild(div);
+}
+
+function remno(div) {
+  document.getElementById('number').removeChild(div.parentNode);
+  i--;
+}
+	</script>
+</body>
+</html>
